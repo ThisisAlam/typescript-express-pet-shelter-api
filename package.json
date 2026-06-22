@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/ThisisAlam/typescript-express-pet-shelter-api#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "nodemon": "^3.1.14",
     "tsx": "^4.22.4",
