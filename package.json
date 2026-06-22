@@ -1,0 +1,34 @@
+{
+  "name": "typescript-express-pet-shelter-api",
+  "version": "1.0.0",
+  "description": "pet shelter api app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --ext ts --exec tsx src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThisisAlam/typescript-express-pet-shelter-api.git"
+  },
+  "keywords": [],
+  "author": "Fakhar Alam",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ThisisAlam/typescript-express-pet-shelter-api/issues"
+  },
+  "homepage": "https://github.com/ThisisAlam/typescript-express-pet-shelter-api#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
+    "@types/express": "^5.0.6",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
