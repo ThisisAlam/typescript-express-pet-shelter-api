@@ -9,19 +9,51 @@ const app: Express = express()
 
 app.use(cors())
 app.use(express.json())
-app.get('/', (_req: Request, res: Response): void => {
-    res.json(pets)
+
+/*
+CHALLENGE: Filter the pets by incoming species query and respond with the filtered list
+1. Grab the `species` query parameter
+2. Create a variable (and type it) to house filtered pets
+3. Filter the pets by said parameter (and type the callback)
+(Make sure the strings you're comparing are lowercase!)
+4. Send filtered data back via `res.json()`
+
+Example API call: http://localhost:8000/&species=cat
+
+Don't worry about any additional TypeScript yet.
+You'll get an error if you try to run this. Don't worry, we'll handle it soon!
+*/
+
+
+
+app.get('/', (req: Request, res: Response<Pet[] | { message: string }>): void => {
+    const species = req.query.species
+
+    // No query => return all pets
+    if (typeof species !== 'string') {
+        res.json(pets)
+        return
+    }
+
+    const filteredPets: Pet[] = pets.filter((pet: Pet): boolean => {
+        return pet.species.toLowerCase() === species.toLowerCase()
+    })
+
+    if (filteredPets.length === 0) {
+        res.status(404).json({
+            message: 'Filtered Pet not found'
+        })
+        return
+    }
+
+    res.json(filteredPets)
 })
-// app.get('/:id', (req: Request, res: Response<Pet|{message:string}>): void => {
-//     //what now?
-//     const paramsId: number = Number(req.params.id)
-//     const singlePet: Pet | undefined = pets.find((pet): boolean => {
-//         return pet.id === paramsId;
-//     })
-app.get('/:id', (req: Request<{id:string}>, res: Response<Pet|{message:string}>): void => {
+
+
+app.get('/:id', (req: Request<{ id: string }>, res: Response<Pet | { message: string }>): void => {
     //what now?
-    const {id} = req.params
-    const singlePet: Pet | undefined = pets.find((pet:Pet): boolean => {
+    const { id } = req.params
+    const singlePet: Pet | undefined = pets.find((pet: Pet): boolean => {
         return pet.id.toString() === id;
     })
     if (!singlePet) {
